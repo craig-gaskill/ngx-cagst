@@ -1,0 +1,7 @@
+<label *ngIf="label" [attr.for]="id">
+  <span>{{label}}</span>
+  <i *ngIf="helpText"
+     class="material-icons"
+     [matTooltip]="helpText"
+     [matTooltipPosition]="tooltipPosition">info</i>
+</label>

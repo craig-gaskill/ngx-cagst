@@ -1,0 +1,18 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  line-height: 1.5rem;
+
+  label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 0.5rem;
+
+    i {
+      padding-left: 0.25rem;
+      opacity: 0.5;
+      font-size: 1rem;
+    }
+  }
+}
