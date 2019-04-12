@@ -31,6 +31,7 @@ export class CagstInputComponent implements OnInit, OnDestroy, ControlValueAcces
   @Input() public editing = false;
   @Input() public maxlength: number;
   @Input() public autocomplete = true;
+  @Input() public autofocus = false;
   @Input() public color: ThemePalette;
   @Input() public hintLabelLeft: string;
   @Input() public hintLabelRight: string;
