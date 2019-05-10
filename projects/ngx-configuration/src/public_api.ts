@@ -3,11 +3,11 @@
  */
 
 // Export models / enums
-export {CagstFieldAppearance} from './lib/model/cagst-field-appearance.enum';
-export {CagstConfiguration} from './lib/model/cagst-configuration.model';
+export {CgtFieldAppearance} from './lib/model/cgt-field-appearance.enum';
+export {CgtConfiguration} from './lib/model/cgt-configuration.model';
 
 // Export services
-export {CagstConfigurationService} from './lib/service/cagst-configuration.service';
+export {CgtConfigurationService} from './lib/service/cgt-configuration.service';
 
 // Export modules
-export {CagstConfigurationModule} from './lib/cagst-configuration.module';
+export {CgtConfigurationModule} from './lib/cgt-configuration.module';

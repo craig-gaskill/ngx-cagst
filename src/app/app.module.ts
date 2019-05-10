@@ -9,8 +9,8 @@ import {AppComponent} from './app.component';
 import {NavigationComponent} from './navigation/navigation.component';
 import {AppMaterialModule} from './app-material.module';
 
-import {CagstLabelModule} from '../../projects/ngx-components/src/lib/label/cagst-label.module';
-import {CagstInputModule} from '../../projects/ngx-components/src/lib/input/cagst-input.module';
+import {CgtLabelModule} from '../../projects/ngx-components/src/lib/label/cgt-label.module';
+import {CgtInputModule} from '../../projects/ngx-components/src/lib/input/cgt-input.module';
 
 import {DemoLabelComponent} from './ngx-components/label/demo-label.component';
 import {DemoInputComponent} from './ngx-components/input/demo-input.component';
@@ -26,8 +26,8 @@ import {DemoInputComponent} from './ngx-components/input/demo-input.component';
     AppRoutingModule,
     AppMaterialModule,
 
-    CagstLabelModule,
-    CagstInputModule
+    CgtLabelModule,
+    CgtInputModule
   ],
   declarations: [
     AppComponent,

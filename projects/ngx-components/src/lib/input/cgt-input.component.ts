@@ -3,21 +3,21 @@ import {AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl} fro
 import {ThemePalette} from '@angular/material';
 import {Observable} from 'rxjs';
 
-import {CagstConfiguration, CagstConfigurationService} from '@cagst/ngx-configuration';
+import {CgtConfiguration, CgtConfigurationService} from '@cagst/ngx-configuration';
 
 @Component({
-  selector: 'cagst-input',
-  templateUrl: './cagst-input.component.html',
-  styleUrls: ['./cagst-input.component.scss'],
+  selector: 'cgt-input',
+  templateUrl: './cgt-input.component.html',
+  styleUrls: ['./cgt-input.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CagstInputComponent),
+      useExisting: forwardRef(() => CgtInputComponent),
       multi: true
     }
   ]
 })
-export class CagstInputComponent implements OnInit, OnDestroy, ControlValueAccessor, AfterViewInit {
+export class CgtInputComponent implements OnInit, OnDestroy, ControlValueAccessor, AfterViewInit {
   private _value: string;
   private _control: AbstractControl;
 
@@ -42,9 +42,9 @@ export class CagstInputComponent implements OnInit, OnDestroy, ControlValueAcces
   @Input() public required = false;
   @Input() public requiredErrorMessage = 'This field is required.';
 
-  public configuration$: Observable<CagstConfiguration>;
+  public configuration$: Observable<CgtConfiguration>;
 
-  constructor(private _injector: Injector, private _configService: CagstConfigurationService) { }
+  constructor(private _injector: Injector, private _configService: CgtConfigurationService) { }
 
   public onChange = (val: any) => {};
   public onTouched = () => {};
@@ -68,10 +68,6 @@ export class CagstInputComponent implements OnInit, OnDestroy, ControlValueAcces
 
   public ngOnInit(): void {
     this.configuration$ = this._configService.getConfiguration$();
-
-    if (this.minlength && !this.minlengthErrorMessage) {
-      this.minlengthErrorMessage = `Must contain at least ${this.minlength} characters.`;
-    }
   }
 
   public ngOnDestroy(): void {

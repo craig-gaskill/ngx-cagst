@@ -1,21 +1,22 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material';
 
-import {CagstLabelModule} from './label/cagst-label.module';
+import {CgtInputComponent} from './cgt-input.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-
-    CagstLabelModule
+    MatInputModule
   ],
   declarations: [
+    CgtInputComponent
   ],
   exports: [
-    CagstLabelModule
+    CgtInputComponent
   ]
 })
-export class CagstComponentsModule { }
+export class CgtInputModule { }

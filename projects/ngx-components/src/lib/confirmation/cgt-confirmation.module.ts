@@ -1,17 +1,17 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
-import {CagstConfirmationComponent} from './cagst-confirmation.component';
+import {CgtConfirmationComponent} from './cgt-confirmation.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    CagstConfirmationComponent
+    CgtConfirmationComponent
   ],
   entryComponents: [
-    CagstConfirmationComponent
+    CgtConfirmationComponent
   ]
 })
-export class CagstConfirmationModule { }
+export class CgtConfirmationModule { }

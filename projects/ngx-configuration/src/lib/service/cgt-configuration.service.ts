@@ -1,18 +1,18 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 
-import {CagstConfiguration} from '../model/cagst-configuration.model';
-import {CagstFieldAppearance} from '../model/cagst-field-appearance.enum';
+import {CgtConfiguration} from '../model/cgt-configuration.model';
+import {CgtFieldAppearance} from '../model/cgt-field-appearance.enum';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CagstConfigurationService implements OnDestroy {
-  private readonly DEFAULT_FIELD_APPEARANCE = CagstFieldAppearance.OUTLINE;
+export class CgtConfigurationService implements OnDestroy {
+  private readonly DEFAULT_FIELD_APPEARANCE = CgtFieldAppearance.OUTLINE;
   private readonly DEFAULT_DATE_FORMAT      = 'mediumDate';
 
-  private readonly _config: CagstConfiguration;
-  private readonly _subject: BehaviorSubject<CagstConfiguration>;
+  private readonly _config: CgtConfiguration;
+  private readonly _subject: BehaviorSubject<CgtConfiguration>;
 
   constructor() {
     this._config = {
@@ -30,7 +30,7 @@ export class CagstConfigurationService implements OnDestroy {
   /**
    * Retrieves the current configuration for the application.
    */
-  public getConfiguration$(): Observable<CagstConfiguration> {
+  public getConfiguration$(): Observable<CgtConfiguration> {
     return this._subject.asObservable();
   }
 
@@ -41,7 +41,7 @@ export class CagstConfigurationService implements OnDestroy {
    * @param fieldAppearance
    *    The new appearance to use for fields.
    */
-  public changeFieldAppearance(fieldAppearance: CagstFieldAppearance) {
+  public changeFieldAppearance(fieldAppearance: CgtFieldAppearance) {
     this._config.fieldAppearance = (fieldAppearance ? fieldAppearance : this.DEFAULT_FIELD_APPEARANCE);
     this._subject.next(this._config);
   }

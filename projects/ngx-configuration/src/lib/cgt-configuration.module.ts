@@ -5,4 +5,4 @@ import {NgModule} from '@angular/core';
   imports: [],
   exports: []
 })
-export class CagstConfigurationModule { }
+export class CgtConfigurationModule { }

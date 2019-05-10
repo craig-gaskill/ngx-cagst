@@ -10,11 +10,11 @@ export interface ConfirmationContext {
 }
 
 @Component({
-  selector: 'cagst-confirmation',
-  templateUrl: './cagst-confirmation.component.html'
+  selector: 'cgt-confirmation',
+  templateUrl: './cgt-confirmation.component.html'
 })
-export class CagstConfirmationComponent {
-  constructor(private _dialogRef: MatDialogRef<CagstConfirmationComponent>,
+export class CgtConfirmationComponent {
+  constructor(private _dialogRef: MatDialogRef<CgtConfirmationComponent>,
               @Inject(MAT_DIALOG_DATA) public data: ConfirmationContext
   ) { }
 }

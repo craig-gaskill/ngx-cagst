@@ -1,11 +1,11 @@
 import {Component, HostBinding, Input} from '@angular/core';
 
 @Component({
-  selector: 'cagst-label',
-  templateUrl: './cagst-label.component.html',
-  styleUrls: ['./cagst-label.component.scss']
+  selector: 'cgt-label',
+  templateUrl: './cgt-label.component.html',
+  styleUrls: ['./cgt-label.component.scss']
 })
-export class CagstLabelComponent {
+export class CgtLabelComponent {
   @Input() public id: string;
   @Input() public label: string;
   @Input() public helpText: string;

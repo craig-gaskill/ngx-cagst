@@ -7,7 +7,7 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "cagst",
+      "prefix": "cgt",
       "schematics": {
         "@schematics/angular:component": {
           "styleext": "scss"
@@ -141,7 +141,7 @@
       "root": "projects/ngx-components",
       "sourceRoot": "projects/ngx-components/src",
       "projectType": "library",
-      "prefix": "cagst",
+      "prefix": "cgt",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -176,7 +176,7 @@
       "root": "projects/ngx-configuration",
       "sourceRoot": "projects/ngx-configuration/src",
       "projectType": "library",
-      "prefix": "cagst",
+      "prefix": "cgt",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

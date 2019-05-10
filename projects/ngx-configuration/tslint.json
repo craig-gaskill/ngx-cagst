@@ -4,13 +4,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "cagst",
+      "cgt",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "cagst",
+      "cgt",
       "kebab-case"
     ]
   }
