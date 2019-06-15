@@ -5,7 +5,7 @@
   <div [id]="id">{{value}}</div>
 </div>
 
-<ng-container *ngIf="editing">
+<ng-container *ngIf="editing" class="mat-form-field">
   <mat-form-field [appearance]="(configuration$ | async)?.fieldAppearance"
                   [hintLabel]="hintLabelLeft"
                   [color]="color">
