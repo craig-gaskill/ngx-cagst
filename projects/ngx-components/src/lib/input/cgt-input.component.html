@@ -18,11 +18,11 @@
            [autocomplete]="autocomplete"
            [autofocus]="autofocus"
            [required]="required"
-           [minlength]="minlength"
+           [attr.minlength]="minlength"
            [attr.maxlength]="maxlength"
-           [disabled]="disabled"
            [(ngModel)]="value"
-           (blur)="onTouched()">
+           (blur)="onTouched()"
+           #innerInputElement>
 
     <ng-content matSuffix select="[suffix]"></ng-content>
     <mat-hint align="end" *ngIf="hintLabelRight">{{hintLabelRight}}</mat-hint>

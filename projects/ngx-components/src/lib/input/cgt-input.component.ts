@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, forwardRef, Injector, Input, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Injector, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
 import {ThemePalette} from '@angular/material';
 import {Observable} from 'rxjs';
@@ -12,25 +12,24 @@ import {CgtConfiguration, CgtConfigurationService} from '@cagst/ngx-configuratio
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CgtInputComponent),
+      useExisting: CgtInputComponent,
       multi: true
     }
   ]
 })
-export class CgtInputComponent implements OnInit, OnDestroy, ControlValueAccessor, AfterViewInit {
+export class CgtInputComponent implements OnInit, ControlValueAccessor, AfterViewInit {
   private _value: string;
+  private _disabled = false;
   private _control: AbstractControl;
-
-  private _subscribed = false;
+  private _innerInputElement: ElementRef;
 
   @Input() public id: string;
   @Input() public name: string;
   @Input() public label: string;
   @Input() public type = 'text';
-  @Input() public disabled = false;
   @Input() public editing = false;
   @Input() public maxlength: number;
-  @Input() public autocomplete = true;
+  @Input() public autocomplete: string;
   @Input() public autofocus = false;
   @Input() public color: ThemePalette;
   @Input() public hintLabelLeft: string;
@@ -42,15 +41,30 @@ export class CgtInputComponent implements OnInit, OnDestroy, ControlValueAccesso
   @Input() public required = false;
   @Input() public requiredErrorMessage = 'This field is required.';
 
+  @ViewChild('innerInputElement', {static: false})
+  private  set innerInputElement(elementRef: ElementRef) {
+    this._innerInputElement = elementRef;
+
+    if (this._innerInputElement) {
+      if (this._disabled) {
+        this._renderer.setAttribute(this._innerInputElement.nativeElement, 'disabled', 'disabled');
+      } else {
+        this._renderer.removeAttribute(this._innerInputElement.nativeElement, 'disabled');
+      }
+    }
+  }
+
   public configuration$: Observable<CgtConfiguration>;
 
-  constructor(private _injector: Injector, private _configService: CgtConfigurationService) { }
+  constructor(private _injector: Injector,
+              private _renderer: Renderer2,
+              private _configService: CgtConfigurationService) { }
 
   public onChange = (val: any) => {};
   public onTouched = () => {};
 
   public get invalid() {
-    return !!(this._control && this._control.invalid && !this.disabled);
+    return !!(this._control && this._control.invalid && !this._disabled);
   }
 
   public get touched() {
@@ -70,10 +84,6 @@ export class CgtInputComponent implements OnInit, OnDestroy, ControlValueAccesso
     this.configuration$ = this._configService.getConfiguration$();
   }
 
-  public ngOnDestroy(): void {
-    this._subscribed = false;
-  }
-
   public ngAfterViewInit(): void {
     this._control = this._injector.get(NgControl).control;
   }
@@ -91,7 +101,15 @@ export class CgtInputComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   public setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    this._disabled = isDisabled;
+
+    if (this._innerInputElement) {
+      if (this._disabled) {
+        this._renderer.setAttribute(this._innerInputElement.nativeElement, 'disabled', 'disabled');
+      } else {
+        this._renderer.removeAttribute(this._innerInputElement.nativeElement, 'disabled');
+      }
+    }
   }
 
   public writeValue(val: string): void {

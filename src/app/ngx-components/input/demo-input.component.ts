@@ -5,7 +5,7 @@ import {Component, Input} from '@angular/core';
   templateUrl: './demo-input.component.html'
 })
 export class DemoInputComponent {
-  @Input() public editing   = false;
+  @Input() public editing   = true;
   @Input() public label     = 'First Name';
   @Input() public required  = true;
   @Input() public minlength = 2;
