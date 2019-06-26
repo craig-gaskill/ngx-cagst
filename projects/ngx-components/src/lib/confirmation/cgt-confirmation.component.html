@@ -1,12 +1,11 @@
-<h2 mat-dialog-title>{{data.title}}</h2>
-<div mat-dialog-content>{{data.message}}</div>
+<h3 mat-dialog-title>{{data.title}}</h3>
+<div mat-dialog-content>
+  <p>{{data.message}}</p>
+</div>
 <div mat-dialog-actions *ngIf="data.actions && data.actions.length > 0">
-  <ng-container *ngFor="let action of data.actions">
-    <button mat-button (click)="action.onAction">{{action.actionText}}</button>
-  </ng-container>
-
-  <!--
-  <button mat-button (click)="onNoClick()">{{data.denyButtonText}}</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>{{data.acceptButtonText}}</button>
-  -->
+  <button *ngFor="let action of data.actions"
+          mat-button
+          (click)="action.onAction">
+    {{action.actionText}}
+  </button>
 </div>

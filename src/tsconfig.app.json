@@ -2,7 +2,15 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
-    "types": []
+    "types": [],
+    "paths": {
+      "@cagst/ngx-components": [
+        "projects/ngx-components/src/public_api.ts"
+      ],
+      "@cagst/ngx-configuration": [
+        "projects/ngx-configuration/src/public_api.ts"
+      ]
+    }
   },
   "exclude": [
     "test.ts",
