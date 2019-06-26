@@ -20,17 +20,11 @@
       "dom"
     ],
     "paths": {
-      "ngx-components": [
+      "@cagst/ngx-components": [
         "dist/ngx-components"
       ],
-      "ngx-components/*": [
-        "dist/ngx-components/*"
-      ],
-      "ngx-configuration": [
+      "@cagst/ngx-configuration": [
         "dist/ngx-configuration"
-      ],
-      "ngx-configuration/*": [
-        "dist/ngx-configuration/*"
       ]
     }
   }

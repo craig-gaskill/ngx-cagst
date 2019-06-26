@@ -1,20 +1,21 @@
 import {Component, Inject} from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material';
 
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+export interface CgtConfirmationAction {
+  actionText: string;
+  onAction: any;
+}
 
-export interface ConfirmationContext {
+export interface CgtConfirmationContext {
   title: string;
   message: string;
-  acceptButtonText: string;
-  denyButtonText: string;
+  actions: CgtConfirmationAction[];
 }
 
 @Component({
-  selector: 'cgt-confirmation',
+  selector: 'cgt-confirmation-dialog',
   templateUrl: './cgt-confirmation.component.html'
 })
 export class CgtConfirmationComponent {
-  constructor(private _dialogRef: MatDialogRef<CgtConfirmationComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: ConfirmationContext
-  ) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data) { }
 }

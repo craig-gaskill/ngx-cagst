@@ -2,8 +2,9 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-import {CgtLabelModule} from './label/cgt-label.module';
+import {CgtConfirmationModule} from './confirmation/cgt-confirmation.module';
 import {CgtInputModule} from './input/cgt-input.module';
+import {CgtLabelModule} from './label/cgt-label.module';
 
 @NgModule({
   imports: [
@@ -11,14 +12,16 @@ import {CgtInputModule} from './input/cgt-input.module';
     FormsModule,
     ReactiveFormsModule,
 
-    CgtLabelModule,
-    CgtInputModule
+    CgtConfirmationModule,
+    CgtInputModule,
+    CgtLabelModule
   ],
   declarations: [
   ],
   exports: [
-    CgtLabelModule,
-    CgtInputModule
+    CgtConfirmationModule,
+    CgtInputModule,
+    CgtLabelModule
   ]
 })
 export class CgtComponentsModule { }
