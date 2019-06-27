@@ -3,7 +3,7 @@
  */
 
 // export interfaces and classes
-export {CgtConfirmationAction, CgtConfirmationContext} from './lib/confirmation/cgt-confirmation.component';
+export {CgtConfirmationContext} from './lib/confirmation/cgt-confirmation.component';
 
 // export components
 export {CgtConfirmationComponent} from './lib/confirmation/cgt-confirmation.component';

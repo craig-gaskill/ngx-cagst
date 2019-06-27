@@ -2,10 +2,14 @@
 <div mat-dialog-content>
   <p>{{data.message}}</p>
 </div>
-<div mat-dialog-actions *ngIf="data.actions && data.actions.length > 0">
-  <button *ngFor="let action of data.actions"
+<div mat-dialog-actions>
+  <button mat-button
+          [mat-dialog-close]="data.acceptData">
+    {{data.acceptText}}
+  </button>
+  <button *ngIf="data.declineText"
           mat-button
-          (click)="action.onAction">
-    {{action.actionText}}
+          [mat-dialog-close]="data.declineData">
+    {{data.declineText}}
   </button>
 </div>

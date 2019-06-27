@@ -1,15 +1,13 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
 
-export interface CgtConfirmationAction {
-  actionText: string;
-  onAction: any;
-}
-
 export interface CgtConfirmationContext {
   title: string;
   message: string;
-  actions: CgtConfirmationAction[];
+  acceptText: string;
+  acceptData?: any;
+  declineText?: string;
+  declineData?: any;
 }
 
 @Component({
@@ -18,4 +16,10 @@ export interface CgtConfirmationContext {
 })
 export class CgtConfirmationComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data) { }
+
+  public onAccept(): void {
+  }
+
+  public onDecline(): void {
+  }
 }

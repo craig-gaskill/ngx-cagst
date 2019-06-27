@@ -17,28 +17,18 @@ export class DemoConfirmationComponent {
     this._confirmationContent = {
       title: 'Please Confirm',
       message: 'Are you sure you want to delete this?',
-      actions: [
-        {
-          actionText: 'Confirm',
-          onAction: this.onConfirm()
-        },
-        {
-          actionText: 'Cancel',
-          onAction: this.onCancel()
-        }
-      ]
+      acceptText: 'Confirm',
+      acceptData: 'CONFIRMED',
+      declineText: 'Cancel',
+      declineData: 'CANCELED'
     };
   }
 
   public onOpenDialog() {
-    this._dialog.open(CgtConfirmationComponent, {data: this._confirmationContent});
-  }
-
-  private onConfirm() {
-    console.log('DemoConfirmationComponent::onConfirm');
-  }
-
-  private onCancel() {
-    console.log('DemoConfirmationComponent::onCancel');
+    this._dialog.open(CgtConfirmationComponent, {data: this._confirmationContent})
+      .afterClosed()
+      .subscribe(result => {
+        console.log('DemoConfirmationComponent::onOpenDialog::afterClose [' + result + ']');
+      });
   }
 }
