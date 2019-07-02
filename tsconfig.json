@@ -25,6 +25,9 @@
       ],
       "@cagst/ngx-configuration": [
         "dist/ngx-configuration"
+      ],
+      "@cagst/ngx-utilities": [
+        "dist/ngx-utilities"
       ]
     }
   }

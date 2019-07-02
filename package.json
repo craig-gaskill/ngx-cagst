@@ -7,7 +7,11 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:ngx-configuration": "ng build ngx-configuration && cd dist && npm pack ngx-configuration/",
+    "build:ngx-components": "ng build ngx-components && cd dist && npm pack ngx-components/",
+    "build:ngx-utilities": "ng build ngx-utilities && cd dist && npm pack ngx-utilities/",
+    "build:all": "npm run build:ngx-configuration && npm run build:ngx-utilities && npm run build:ngx-components"
   },
   "private": true,
   "dependencies": {

@@ -1,0 +1,8 @@
+{
+  "name": "@cagst/ngx-utilities",
+  "version": "2.0.0",
+  "peerDependencies": {
+    "@angular/common": "^8.0.1",
+    "@angular/core": "^8.0.1"
+  }
+}

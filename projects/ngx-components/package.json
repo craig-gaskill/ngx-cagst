@@ -4,6 +4,7 @@
   "peerDependencies": {
     "@angular/common": "~8.0.1",
     "@angular/core": "~8.0.1",
-    "@cagst/ngx-configuration": "2.0.0"
+    "@cagst/ngx-configuration": "2.0.0",
+    "@cagst/ngx-utilities": "2.0.0"
   }
 }

@@ -2,9 +2,9 @@ import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
 
 export interface CgtConfirmationContext {
-  title: string;
+  title?: string;
   message: string;
-  acceptText: string;
+  acceptText?: string;
   acceptData?: any;
   declineText?: string;
   declineData?: any;
@@ -15,11 +15,5 @@ export interface CgtConfirmationContext {
   templateUrl: './cgt-confirmation.component.html'
 })
 export class CgtConfirmationComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data) { }
-
-  public onAccept(): void {
-  }
-
-  public onDecline(): void {
-  }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: CgtConfirmationContext) { }
 }
