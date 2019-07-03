@@ -5,6 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CgtConfirmationModule} from './confirmation/cgt-confirmation.module';
 import {CgtInputModule} from './input/cgt-input.module';
 import {CgtLabelModule} from './label/cgt-label.module';
+import {CgtNotificationModule} from './notification/cgt-notification.module';
 
 @NgModule({
   imports: [
@@ -14,14 +15,16 @@ import {CgtLabelModule} from './label/cgt-label.module';
 
     CgtConfirmationModule,
     CgtInputModule,
-    CgtLabelModule
+    CgtLabelModule,
+    CgtNotificationModule
   ],
   declarations: [
   ],
   exports: [
     CgtConfirmationModule,
     CgtInputModule,
-    CgtLabelModule
+    CgtLabelModule,
+    CgtNotificationModule
   ]
 })
 export class CgtComponentsModule { }
