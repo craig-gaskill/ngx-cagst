@@ -3,12 +3,13 @@
   <div [innerHTML]="data.message | sanitize"></div>
 </div>
 <div mat-dialog-actions>
-  <button mat-button
+  <button mat-raised-button
+          color="primary"
           [mat-dialog-close]="data.acceptData">
     {{data.acceptText ? data.acceptText : "Okay"}}
   </button>
   <button *ngIf="data.declineText"
-          mat-button
+          mat-raised-button
           [mat-dialog-close]="data.declineData">
     {{data.declineText}}
   </button>

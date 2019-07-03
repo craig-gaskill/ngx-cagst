@@ -25,7 +25,7 @@ export class DemoConfirmationComponent {
   }
 
   public onOpenDialog() {
-    this._dialog.open(CgtConfirmationComponent, {data: this._confirmationContent})
+    this._dialog.open(CgtConfirmationComponent, {data: this._confirmationContent, autoFocus: false})
       .afterClosed()
       .subscribe(result => {
         console.log('DemoConfirmationComponent::onOpenDialog::afterClose [' + result + ']');

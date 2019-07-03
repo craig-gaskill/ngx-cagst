@@ -12,7 +12,8 @@ export interface CgtConfirmationContext {
 
 @Component({
   selector: 'cgt-confirmation-dialog',
-  templateUrl: './cgt-confirmation.component.html'
+  templateUrl: './cgt-confirmation.component.html',
+  styleUrls: ['./cgt-confirmation.component.scss']
 })
 export class CgtConfirmationComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: CgtConfirmationContext) { }

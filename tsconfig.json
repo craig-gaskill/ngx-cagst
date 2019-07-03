@@ -18,17 +18,6 @@
     "lib": [
       "es2018",
       "dom"
-    ],
-    "paths": {
-      "@cagst/ngx-components": [
-        "dist/ngx-components"
-      ],
-      "@cagst/ngx-configuration": [
-        "dist/ngx-configuration"
-      ],
-      "@cagst/ngx-utilities": [
-        "dist/ngx-utilities"
-      ]
-    }
+    ]
   }
 }
