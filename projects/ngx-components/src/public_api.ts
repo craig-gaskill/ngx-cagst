@@ -2,13 +2,22 @@
  * Public API Surface of ngx-components
  */
 
+// export interfaces and classes
+export {CgtConfirmationContext} from './lib/confirmation/cgt-confirmation.component';
+
 // export components
-export {CagstInputComponent} from './lib/input/cagst-input.component';
-export {CagstLabelComponent} from './lib/label/cagst-label.component';
+export {CgtConfirmationComponent} from './lib/confirmation/cgt-confirmation.component';
+export {CgtInputComponent} from './lib/input/cgt-input.component';
+export {CgtLabelComponent} from './lib/label/cgt-label.component';
+
+// export services
+export {CgtNotificationService} from './lib/notification/cgt-notification.service';
 
 // export modules
-export {CagstInputModule} from './lib/input/cagst-input.module';
-export {CagstLabelModule} from './lib/label/cagst-label.module';
+export {CgtConfirmationModule} from './lib/confirmation/cgt-confirmation.module';
+export {CgtInputModule} from './lib/input/cgt-input.module';
+export {CgtLabelModule} from './lib/label/cgt-label.module';
+export {CgtNotificationModule} from './lib/notification/cgt-notification.module';
 
 // export parent module
-export {CagstComponentsModule} from './lib/cagst-components.module';
+export {CgtComponentsModule} from './lib/cgt-components.module';

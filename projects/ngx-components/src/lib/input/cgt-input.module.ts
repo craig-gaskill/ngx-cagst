@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material';
 
-import {CagstInputComponent} from './cagst-input.component';
+import {CgtInputComponent} from './cgt-input.component';
 
 @NgModule({
   imports: [
@@ -13,10 +13,10 @@ import {CagstInputComponent} from './cagst-input.component';
     MatInputModule
   ],
   declarations: [
-    CagstInputComponent
+    CgtInputComponent
   ],
   exports: [
-    CagstInputComponent
+    CgtInputComponent
   ]
 })
-export class CagstInputModule { }
+export class CgtInputModule { }

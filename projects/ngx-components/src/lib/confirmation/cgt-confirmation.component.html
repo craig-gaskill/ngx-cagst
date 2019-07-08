@@ -1,0 +1,16 @@
+<h3 mat-dialog-title>{{data.title ? data.title : "Please Confirm"}}</h3>
+<div mat-dialog-content>
+  <div [innerHTML]="data.message | sanitize"></div>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button
+          color="primary"
+          [mat-dialog-close]="data.acceptData">
+    {{data.acceptText ? data.acceptText : "Okay"}}
+  </button>
+  <button *ngIf="data.declineText"
+          mat-raised-button
+          [mat-dialog-close]="data.declineData">
+    {{data.declineText}}
+  </button>
+</div>

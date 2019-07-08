@@ -2,7 +2,7 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {MatTooltipModule} from '@angular/material';
 
-import {CagstLabelComponent} from './cagst-label.component';
+import {CgtLabelComponent} from './cgt-label.component';
 
 @NgModule({
   imports: [
@@ -10,10 +10,10 @@ import {CagstLabelComponent} from './cagst-label.component';
     MatTooltipModule
   ],
   declarations: [
-    CagstLabelComponent
+    CgtLabelComponent
   ],
   exports: [
-    CagstLabelComponent
+    CgtLabelComponent
   ]
 })
-export class CagstLabelModule { }
+export class CgtLabelModule { }

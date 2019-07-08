@@ -1,0 +1,40 @@
+<div *ngIf="!editing" class="mat-form-field">
+  <label class="mat-form-field-label">
+    <mat-label *ngIf="label">{{label}}</mat-label>
+  </label>
+  <div [id]="id">{{value}}</div>
+</div>
+
+<ng-container *ngIf="editing" class="mat-form-field">
+  <mat-form-field [appearance]="(configuration$ | async)?.fieldAppearance"
+                  [hintLabel]="hintLabelLeft"
+                  [color]="color">
+    <mat-label *ngIf="label">{{label}}</mat-label>
+    <ng-content matPrefix select="[prefix]"></ng-content>
+    <input [id]="id"
+           [name]="name"
+           [type]="type"
+           matInput
+           [autocomplete]="autocomplete"
+           [autofocus]="autofocus"
+           [required]="required"
+           [attr.minlength]="minlength"
+           [attr.maxlength]="maxlength"
+           [(ngModel)]="value"
+           (blur)="onTouched()"
+           #innerInputElement>
+
+    <ng-content matSuffix select="[suffix]"></ng-content>
+    <mat-hint align="end" *ngIf="hintLabelRight">{{hintLabelRight}}</mat-hint>
+
+    <mat-error *ngIf="invalid && touched">
+      <div *ngIf="hasError('required')">
+        {{requiredErrorMessage}}
+      </div>
+      <div *ngIf="hasError('minlength')">
+        <ng-container *ngIf="minlengthErrorMessage; else noMinMsg">{{minlengthErrorMessage}}</ng-container>
+        <ng-template #noMinMsg>Must contain at lease {{minlength}} characters.</ng-template>
+      </div>
+    </mat-error>
+  </mat-form-field>
+</ng-container>

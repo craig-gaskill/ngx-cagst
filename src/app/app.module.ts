@@ -4,16 +4,17 @@ import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+import {CgtConfigurationModule} from '@cagst/ngx-configuration';
+import {CgtConfirmationModule, CgtInputModule, CgtLabelModule} from '@cagst/ngx-components';
+
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {NavigationComponent} from './navigation/navigation.component';
 import {AppMaterialModule} from './app-material.module';
 
-import {CagstLabelModule} from '../../projects/ngx-components/src/lib/label/cagst-label.module';
-import {CagstInputModule} from '../../projects/ngx-components/src/lib/input/cagst-input.module';
-
-import {DemoLabelComponent} from './ngx-components/label/demo-label.component';
+import {DemoConfirmationComponent} from './ngx-components/confirmation/demo-confirmation.component';
 import {DemoInputComponent} from './ngx-components/input/demo-input.component';
+import {DemoLabelComponent} from './ngx-components/label/demo-label.component';
 
 @NgModule({
   imports: [
@@ -26,15 +27,18 @@ import {DemoInputComponent} from './ngx-components/input/demo-input.component';
     AppRoutingModule,
     AppMaterialModule,
 
-    CagstLabelModule,
-    CagstInputModule
+    CgtConfigurationModule,
+    CgtConfirmationModule,
+    CgtInputModule,
+    CgtLabelModule
   ],
   declarations: [
     AppComponent,
     NavigationComponent,
 
-    DemoLabelComponent,
-    DemoInputComponent
+    DemoConfirmationComponent,
+    DemoInputComponent,
+    DemoLabelComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

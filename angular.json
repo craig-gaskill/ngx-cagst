@@ -4,10 +4,10 @@
   "newProjectRoot": "projects",
   "projects": {
     "ngx-cagst": {
+      "projectType": "application",
       "root": "",
       "sourceRoot": "src",
-      "projectType": "application",
-      "prefix": "cagst",
+      "prefix": "cgt",
       "schematics": {
         "@schematics/angular:component": {
           "styleext": "scss"
@@ -110,8 +110,8 @@
       }
     },
     "ngx-cagst-e2e": {
-      "root": "e2e/",
       "projectType": "application",
+      "root": "e2e/",
       "prefix": "",
       "architect": {
         "e2e": {
@@ -138,10 +138,10 @@
       }
     },
     "ngx-components": {
+      "projectType": "library",
       "root": "projects/ngx-components",
       "sourceRoot": "projects/ngx-components/src",
-      "projectType": "library",
-      "prefix": "cagst",
+      "prefix": "cgt",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -173,10 +173,10 @@
       }
     },
     "ngx-configuration": {
+      "projectType": "library",
       "root": "projects/ngx-configuration",
       "sourceRoot": "projects/ngx-configuration/src",
-      "projectType": "library",
-      "prefix": "cagst",
+      "prefix": "cgt",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -199,6 +199,41 @@
             "tsConfig": [
               "projects/ngx-configuration/tsconfig.lib.json",
               "projects/ngx-configuration/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-utilities": {
+      "projectType": "library",
+      "root": "projects/ngx-utilities",
+      "sourceRoot": "projects/ngx-utilities/src",
+      "prefix": "cgt",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-utilities/tsconfig.lib.json",
+            "project": "projects/ngx-utilities/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-utilities/src/test.ts",
+            "tsConfig": "projects/ngx-utilities/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-utilities/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-utilities/tsconfig.lib.json",
+              "projects/ngx-utilities/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
