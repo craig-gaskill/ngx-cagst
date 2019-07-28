@@ -1,10 +1,9 @@
 {
-  "name": "@cagst/ngx-components",
+  "name": "@cagst/ngx-dictionary",
   "version": "8.0.0-beta.1",
   "peerDependencies": {
     "@angular/common": "~8.0.1",
     "@angular/core": "~8.0.1",
-    "@cagst/ngx-configuration": "8.0.0",
-    "@cagst/ngx-utilities": "8.0.0"
+    "@cagst/ngx-configuration": "~8.0.0"
   }
 }

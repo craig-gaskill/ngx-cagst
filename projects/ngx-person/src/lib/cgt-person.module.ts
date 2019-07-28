@@ -1,20 +1,20 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 
-import {CgtSanitizePipe} from './pipe/cgt-sanitize.pipe';
+import {CgtPersonFormatterPipe} from './pipes/cgt-person-formatter.pipe';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    CgtSanitizePipe
+    CgtPersonFormatterPipe
   ],
   exports: [
-    CgtSanitizePipe
+    CgtPersonFormatterPipe
   ],
   providers: [
-    CgtSanitizePipe
+    CgtPersonFormatterPipe
   ]
 })
-export class CgtUtilitiesModule { }
+export class CgtPersonModule { }

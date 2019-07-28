@@ -207,6 +207,76 @@
         }
       }
     },
+    "ngx-dictionary": {
+      "projectType": "library",
+      "root": "projects/ngx-dictionary",
+      "sourceRoot": "projects/ngx-dictionary/src",
+      "prefix": "cgt",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-dictionary/tsconfig.lib.json",
+            "project": "projects/ngx-dictionary/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-dictionary/src/test.ts",
+            "tsConfig": "projects/ngx-dictionary/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-dictionary/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-dictionary/tsconfig.lib.json",
+              "projects/ngx-dictionary/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-person": {
+      "projectType": "library",
+      "root": "projects/ngx-person",
+      "sourceRoot": "projects/ngx-person/src",
+      "prefix": "cgt",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-person/tsconfig.lib.json",
+            "project": "projects/ngx-person/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-person/src/test.ts",
+            "tsConfig": "projects/ngx-person/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-person/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-person/tsconfig.lib.json",
+              "projects/ngx-person/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
     "ngx-utilities": {
       "projectType": "library",
       "root": "projects/ngx-utilities",

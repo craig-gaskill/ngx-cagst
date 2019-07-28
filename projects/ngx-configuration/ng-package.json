@@ -2,6 +2,9 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/ngx-configuration",
   "lib": {
-    "entryFile": "src/public_api.ts"
+    "entryFile": "src/public_api.ts",
+    "umdModuleIds": {
+      "@cagst/ngx-configuration": "@cagst/ngx-configuration"
+    }
   }
 }
