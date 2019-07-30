@@ -10,6 +10,9 @@
       "@cagst/ngx-configuration": [
         "projects/ngx-configuration/src/public_api.ts"
       ],
+      "@cagst/ngx-dictionary": [
+        "projects/ngx-dictionary/src/public_api.ts"
+      ],
       "@cagst/ngx-utilities": [
         "projects/ngx-utilities/src/public_api.ts"
       ]

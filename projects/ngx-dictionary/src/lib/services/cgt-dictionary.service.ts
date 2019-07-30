@@ -4,8 +4,6 @@ import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 
 import {CgtDictionary} from '../models/cgt-dictionary';
-import {CgtDictionaryValue} from '../models/cgt-dictionary-value';
-import {CgtDictionaryModule} from '../cgt-dictionary.module';
 
 /**
  * Interface used by consumers of this API to configure the URL of the application-specific endpoint.
@@ -22,7 +20,7 @@ export interface CgtDictionaryServiceConfig {
  * <code>{ provide: "DictionaryServiceConfig", useClass: **Implemented class name** }</code>
  */
 @Injectable({
-  providedIn: CgtDictionaryModule
+  providedIn: 'root'
 })
 export class CgtDictionaryService {
   private readonly BASE_URL: string;
@@ -68,14 +66,14 @@ export class CgtDictionaryService {
   /**
    * Get a {@link CgtDictionary} by its unique meaning.
    *
-   * @param meaning
+   * @param dictionaryMeaning
    *    The meaning of the dictionary to get.
    * @param include
    *    Extra values to return. Valid options are ("values", "attributes").
    *
    * @returns An {@link Observable} representing the found {@link CgtDictionary}.
    */
-  public getDictionaryByMeaning(meaning: string, include: string[] = []): Observable<CgtDictionary> {
+  public getDictionaryByMeaning(dictionaryMeaning: string, include: string[] = []): Observable<CgtDictionary> {
     let params = new HttpParams();
     if (include && include.length > 0) {
       for (const inc of include) {
@@ -83,7 +81,7 @@ export class CgtDictionaryService {
       }
     }
 
-    const url = `${this.BASE_URL}/${meaning}`;
+    const url = `${this.BASE_URL}/${dictionaryMeaning}`;
 
     return this._httpClient.get<any>(url, {params})
       .pipe(
@@ -133,136 +131,6 @@ export class CgtDictionaryService {
    */
   public deleteDictionary(dictionary: CgtDictionary): Observable<boolean> {
     const url = `${this.BASE_URL}/${dictionary.dictionaryId}`;
-
-    return this._httpClient.delete<boolean>(url, {observe: 'response'})
-      .pipe(
-        map(response => response.status === 204),
-        catchError(CgtDictionaryService.handleError)
-      );
-  }
-
-  /**
-   * Get a list of dictionary values from a given dictionary.
-   *
-   * @param meaning
-   *    The dictionary to get values from.
-   * @param start
-   *    Optional low-end parameter used in pagination. Set to <code>pageSize * (pageNumber - 1)</code>.
-   * @param limit
-   *    Optional high-end parameter used in pagination. Set to <code>pageSize</code>.
-   * @param name
-   *    Optional search parameter used to filter the returned results.
-   * @param include
-   *    Extra values to return. Valid options are ("mappings", "attributes").
-   *
-   * @returns An {@link Observable} of {@link CgtDictionaryValue} objects.
-   */
-  public getDictionaryValues(meaning: string,
-                             start = 0,
-                             limit = 20,
-                             name: string = null,
-                             include: string[] = []): Observable<CgtDictionaryValue[]> {
-    let params = new HttpParams()
-      .set('start', start.toString())
-      .set('limit', limit.toString());
-
-    if (name != null) {
-      params = params.set('name', name);
-    }
-    if (include && include.length > 0) {
-      for (const inc of include) {
-        params = params.append('with', inc);
-      }
-    }
-
-    const url = `${this.BASE_URL}/${meaning}/values`;
-
-    return this._httpClient.get<any>(url, {params})
-      .pipe(
-        catchError(CgtDictionaryService.handleError)
-      );
-  }
-
-  /**
-   * Get a single {@link CgtDictionaryValue} from a given dictionary.
-   *
-   * @param dictionaryMeaning
-   *    The dictionary to get a value from.
-   * @param dictionaryValue
-   *    The ID or Meaning of the dictionary value to retrieve.
-   * @param include
-   *    An optional array of additional parameters (such as <code>mapping</code> or <code>attributes</code>).
-   *
-   * @returns An {@link Observable} representing a {@link CgtDictionaryValue} object or null.
-   */
-  public getDictionaryValue(dictionaryMeaning: string, dictionaryValue: number|string, include: string[] = [])
-    : Observable<CgtDictionaryValue> {
-
-    let params = new HttpParams();
-    if (include && include.length > 0) {
-      for (const inc of include) {
-        params = params.append('with', inc);
-      }
-    }
-
-    const url = `${this.BASE_URL}/${dictionaryMeaning}/values/${dictionaryValue}`;
-
-    return this._httpClient.get<CgtDictionaryValue>(url, {params})
-      .pipe(
-        catchError(CgtDictionaryService.handleError)
-      );
-  }
-
-  /**
-   * Create a {@link CgtDictionaryValue} in a given dictionary.
-   *
-   * @param meaning
-   *    The dictionary to add a value to.
-   * @param dictionaryValue
-   *    The value to add.
-   *
-   * @returns An {@link Observable} that returns the added {@link CgtDictionaryValue}, null if not added.
-   */
-  public createDictionaryValue(meaning: string, dictionaryValue: CgtDictionaryValue): Observable<CgtDictionaryValue> {
-    const url = `${this.BASE_URL}/${meaning}/values`;
-
-    return this._httpClient.post<CgtDictionaryValue>(url, dictionaryValue)
-      .pipe(
-        catchError(CgtDictionaryService.handleError)
-      );
-  }
-
-  /**
-   * Update a {@link CgtDictionaryValue} in a given dictionary.
-   *
-   * @param meaning
-   *    The dictionary to update the value to.
-   * @param dictionaryValue
-   *    The updated value (which one to update is determined by ID).
-   *
-   * @returns An {@link Observable} that returns the updated {@link CgtDictionaryValue}, null if not added.
-   */
-  public updateDictionaryValue(meaning: string, dictionaryValue: CgtDictionaryValue): Observable<CgtDictionaryValue> {
-    const url = `${this.BASE_URL}/${meaning}/values/${dictionaryValue.dictionaryValueId}`;
-
-    return this._httpClient.put<CgtDictionaryValue>(url, dictionaryValue)
-      .pipe(
-        catchError(CgtDictionaryService.handleError)
-      );
-  }
-
-  /**
-   * Delete a {@link CgtDictionaryValue} from a given dictionary.
-   *
-   * @param meaning
-   *    The dictionary to delete the value from.
-   * @param dictionaryValue
-   *    The value to delete.
-   *
-   * @returns An {@link Observable} that returns whether or not the delete was successful.
-   */
-  public deleteDictionaryValue(meaning: string, dictionaryValue: CgtDictionaryValue): Observable<boolean> {
-    const url = `${this.BASE_URL}/${meaning}/values/${dictionaryValue.dictionaryValueId}`;
 
     return this._httpClient.delete<boolean>(url, {observe: 'response'})
       .pipe(

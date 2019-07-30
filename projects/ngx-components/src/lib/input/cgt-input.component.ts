@@ -44,21 +44,15 @@ export class CgtInputComponent implements OnInit, ControlValueAccessor, AfterVie
   @ViewChild('innerInputElement', {static: false})
   private  set innerInputElement(elementRef: ElementRef) {
     this._innerInputElement = elementRef;
-
-    if (this._innerInputElement) {
-      if (this._disabled) {
-        this._renderer.setAttribute(this._innerInputElement.nativeElement, 'disabled', 'disabled');
-      } else {
-        this._renderer.removeAttribute(this._innerInputElement.nativeElement, 'disabled');
-      }
-    }
+    this.updateDisabledState();
   }
 
   public configuration$: Observable<CgtConfiguration>;
 
   constructor(private _injector: Injector,
               private _renderer: Renderer2,
-              private _configService: CgtConfigurationService) { }
+              private _configService: CgtConfigurationService
+  ) { }
 
   public onChange = (val: any) => {};
   public onTouched = () => {};
@@ -102,7 +96,14 @@ export class CgtInputComponent implements OnInit, ControlValueAccessor, AfterVie
 
   public setDisabledState(isDisabled: boolean): void {
     this._disabled = isDisabled;
+    this.updateDisabledState();
+  }
 
+  public writeValue(val: string): void {
+    this._value = val;
+  }
+
+  private updateDisabledState(): void {
     if (this._innerInputElement) {
       if (this._disabled) {
         this._renderer.setAttribute(this._innerInputElement.nativeElement, 'disabled', 'disabled');
@@ -110,9 +111,5 @@ export class CgtInputComponent implements OnInit, ControlValueAccessor, AfterVie
         this._renderer.removeAttribute(this._innerInputElement.nativeElement, 'disabled');
       }
     }
-  }
-
-  public writeValue(val: string): void {
-    this._value = val;
   }
 }

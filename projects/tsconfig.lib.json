@@ -17,6 +17,9 @@
       "@cagst/ngx-configuration": [
         "dist/ngx-configuration"
       ],
+      "@cagst/ngx-dictionary": [
+        "dist/ngx-dictionary"
+      ],
       "@cagst/ngx-person": [
         "dist/ngx-person"
       ],

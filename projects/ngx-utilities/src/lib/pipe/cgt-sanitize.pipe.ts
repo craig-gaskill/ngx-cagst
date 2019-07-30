@@ -1,11 +1,11 @@
 import {DomSanitizer} from '@angular/platform-browser';
 import {Pipe, PipeTransform, SecurityContext} from '@angular/core';
 
-@Pipe({name: 'sanitize'})
+@Pipe({name: 'cgtSanitize'})
 export class CgtSanitizePipe implements PipeTransform {
   constructor(private _domSanitizer: DomSanitizer) { }
 
-  public transform(value: any, type = 'html'): any {
+  public transform(value: any, type = 'html'): string {
     if (!value) {
       return undefined;
     } else if (value === 'none') {

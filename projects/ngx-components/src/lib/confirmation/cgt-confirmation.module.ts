@@ -12,6 +12,7 @@ import {CgtConfirmationComponent} from './cgt-confirmation.component';
     MatButtonModule,
     MatDialogModule,
 
+    CgtUtilitiesModule,
     CgtUtilitiesModule
   ],
   declarations: [
