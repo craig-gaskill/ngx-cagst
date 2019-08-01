@@ -14,6 +14,7 @@ export {CgtDictionarySelectComponent} from './lib/components/select/cgt-dictiona
 
 // Export services
 export {CgtDictionaryService, CgtDictionaryServiceConfig} from './lib/services/cgt-dictionary.service';
+export {CgtDictionaryValueService} from './lib/services/cgt-dictionary-value.service';
 
 // Export modules
 export {CgtDictionaryModule} from './lib/cgt-dictionary.module';

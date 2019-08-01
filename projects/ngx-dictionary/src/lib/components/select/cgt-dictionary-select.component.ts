@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Injector, Input, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Injector, Input} from '@angular/core';
 import {AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
 import {Observable, of} from 'rxjs';
 
@@ -21,7 +21,6 @@ export class CgtDictionarySelectComponent implements ControlValueAccessor, After
   private _value: string|number|CgtDictionaryValue;
   private _disabled = false;
   private _control: AbstractControl;
-  private _innerInputElement: ElementRef;
 
   @Input() public id: string;
   @Input() public name: string;
@@ -38,15 +37,16 @@ export class CgtDictionarySelectComponent implements ControlValueAccessor, After
   @Input() public required = false;
   @Input() public requiredErrorMessage = 'This field is required.';
 
-  @ViewChild('innerSelectElement', {static: false})
-  private  set innerInputElement(elementRef: ElementRef) {
-    this._innerInputElement = elementRef;
-    this.updateDisabledState();
+  @Input() public get disabled(): boolean {
+    return this._disabled;
+  }
+
+  public set disabled(isDisabled: boolean) {
+    this._disabled = isDisabled;
   }
 
   constructor(private _dictionaryValueService: CgtDictionaryValueService,
-              private _injector: Injector,
-              private _renderer: Renderer2
+              private _injector: Injector
   ) { }
 
   public onChange = (_: any) => {};
@@ -76,7 +76,7 @@ export class CgtDictionarySelectComponent implements ControlValueAccessor, After
     this._value = val;
   }
 
-  public get options(): Observable<CgtDictionaryValue[]> {
+  public get options$(): Observable<CgtDictionaryValue[]> {
     if (this.dictionaryValues) {
       return of(this.dictionaryValues);
     } else if (this.dictionaryMeaning) {
@@ -96,19 +96,8 @@ export class CgtDictionarySelectComponent implements ControlValueAccessor, After
 
   public setDisabledState(isDisabled: boolean): void {
     this._disabled = isDisabled;
-    this.updateDisabledState();
   }
 
   public writeValue(obj: any): void {
-  }
-
-  private updateDisabledState(): void {
-    if (this._innerInputElement) {
-      if (this._disabled) {
-        this._renderer.setAttribute(this._innerInputElement.nativeElement, 'disabled', 'disabled');
-      } else {
-        this._renderer.removeAttribute(this._innerInputElement.nativeElement, 'disabled');
-      }
-    }
   }
 }

@@ -11,33 +11,33 @@ export class DemoDictionarySelectComponent {
   @Input() public required  = true;
   @Input() public disabled  = false;
 
-  public options: CgtDictionaryValue[] = [];
+  public options: CgtDictionaryValue[];
   public value: CgtDictionaryValue;
 
   constructor() {
-    this.options.push({
-      dictionaryValueId: 1,
-      display: 'Male',
-      meaning: 'MALE',
-      active: true,
-      updateCount: 0
-    });
-
-    this.options.push({
-      dictionaryValueId: 2,
-      display: 'Female',
-      meaning: 'FEMALE',
-      active: true,
-      updateCount: 0
-    });
-
-    this.options.push({
-      dictionaryValueId: 2,
-      display: 'Unknown',
-      meaning: 'UNKNOWN',
-      active: false,
-      updateCount: 0
-    });
+    // this.options.push({
+    //   dictionaryValueId: 1,
+    //   display: 'Male',
+    //   meaning: 'MALE',
+    //   active: true,
+    //   updateCount: 0
+    // });
+    //
+    // this.options.push({
+    //   dictionaryValueId: 2,
+    //   display: 'Female',
+    //   meaning: 'FEMALE',
+    //   active: true,
+    //   updateCount: 0
+    // });
+    //
+    // this.options.push({
+    //   dictionaryValueId: 2,
+    //   display: 'Unknown',
+    //   meaning: 'UNKNOWN',
+    //   active: false,
+    //   updateCount: 0
+    // });
   }
 
 }

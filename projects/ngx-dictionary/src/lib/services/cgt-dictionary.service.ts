@@ -83,7 +83,7 @@ export class CgtDictionaryService {
 
     const url = `${this.BASE_URL}/${dictionaryMeaning}`;
 
-    return this._httpClient.get<any>(url, {params})
+    return this._httpClient.get<CgtDictionary>(url, {params})
       .pipe(
         catchError(CgtDictionaryService.handleError)
       );

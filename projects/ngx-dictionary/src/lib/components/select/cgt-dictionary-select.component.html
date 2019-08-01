@@ -11,9 +11,13 @@
     <mat-select [(value)]="value"
                 [multiple]="multiple"
                 [required]="required"
-                #innerSelectElement>
+                [disabled]="disabled">
       <mat-option *ngIf="!required && noValue">{{noValue}}</mat-option>
-      <mat-option *ngFor="let option of options | async" [disabled]="!option.active">{{option.display}}</mat-option>
+      <mat-option *ngFor="let option of options$ | async"
+                  [disabled]="!option.active"
+                  [value]="option">
+        {{option.display}}
+      </mat-option>
     </mat-select>
 
     <mat-error *ngIf="invalid && touched">

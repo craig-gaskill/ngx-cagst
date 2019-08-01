@@ -18,6 +18,9 @@ import {DemoConfirmationComponent} from './ngx-components/confirmation/demo-conf
 import {DemoDictionarySelectComponent} from './ngx-dictionary/select/demo-dictionary-select.component';
 import {DemoInputComponent} from './ngx-components/input/demo-input.component';
 import {DemoLabelComponent} from './ngx-components/label/demo-label.component';
+import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
+import {MockBackendService} from './api/mock-backend.service';
+import {DictionaryServiceConfig} from './config/dictionary-service.config';
 
 @NgModule({
   imports: [
@@ -27,6 +30,7 @@ import {DemoLabelComponent} from './ngx-components/label/demo-label.component';
     ReactiveFormsModule,
     LayoutModule,
     HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(MockBackendService, {delay: 150, apiBase: '/'}),
 
     AppRoutingModule,
     AppMaterialModule,
@@ -46,7 +50,12 @@ import {DemoLabelComponent} from './ngx-components/label/demo-label.component';
     DemoInputComponent,
     DemoLabelComponent
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'CgtDictionaryServiceConfig',
+      useClass: DictionaryServiceConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

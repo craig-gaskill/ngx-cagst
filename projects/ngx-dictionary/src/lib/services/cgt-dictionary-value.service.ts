@@ -59,7 +59,7 @@ export class CgtDictionaryValueService {
 
     const url = `${this.BASE_URL}/${dictionaryMeaning}/values`;
 
-    return this._httpClient.get<any>(url, {params})
+    return this._httpClient.get<CgtDictionaryValue[]>(url, {params})
       .pipe(
         catchError(CgtDictionaryValueService.handleError)
       );
