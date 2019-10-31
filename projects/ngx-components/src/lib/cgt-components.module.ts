@@ -6,6 +6,7 @@ import {CgtConfirmationModule} from './confirmation/cgt-confirmation.module';
 import {CgtInputModule} from './input/cgt-input.module';
 import {CgtLabelModule} from './label/cgt-label.module';
 import {CgtNotificationModule} from './notification/cgt-notification.module';
+import {CgtSelectInfiniteScrollDirective} from './directives/cgt-select-infinite-scroll.directive';
 
 @NgModule({
   imports: [
@@ -19,12 +20,14 @@ import {CgtNotificationModule} from './notification/cgt-notification.module';
     CgtNotificationModule
   ],
   declarations: [
+    CgtSelectInfiniteScrollDirective
   ],
   exports: [
     CgtConfirmationModule,
     CgtInputModule,
     CgtLabelModule,
-    CgtNotificationModule
+    CgtNotificationModule,
+    CgtSelectInfiniteScrollDirective
   ]
 })
 export class CgtComponentsModule { }

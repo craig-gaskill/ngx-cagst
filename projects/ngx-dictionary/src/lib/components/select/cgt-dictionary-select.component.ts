@@ -1,5 +1,5 @@
-import {AfterViewInit, Component, Injector, Input} from '@angular/core';
-import {AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
+import {Component, Input} from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
 import {Observable, of} from 'rxjs';
 
 import {CgtDictionaryValueService} from '../../services/cgt-dictionary-value.service';
@@ -17,10 +17,9 @@ import {CgtDictionaryValue} from '../../models/cgt-dictionary-value';
     }
   ]
 })
-export class CgtDictionarySelectComponent implements ControlValueAccessor, AfterViewInit {
+export class CgtDictionarySelectComponent implements ControlValueAccessor {
   private _value: string|number|CgtDictionaryValue;
   private _disabled = false;
-  private _control: AbstractControl;
 
   @Input() public id: string;
   @Input() public name: string;
@@ -46,15 +45,11 @@ export class CgtDictionarySelectComponent implements ControlValueAccessor, After
   }
 
   constructor(private _dictionaryValueService: CgtDictionaryValueService,
-              private _injector: Injector
+              private _control: NgControl
   ) { }
 
   public onChange = (_: any) => {};
   public onTouched = () => {};
-
-  public ngAfterViewInit(): void {
-    this._control = this._injector.get(NgControl).control;
-  }
 
   public get invalid() {
     return !!(this._control && this._control.invalid && !this._disabled);
@@ -99,5 +94,6 @@ export class CgtDictionarySelectComponent implements ControlValueAccessor, After
   }
 
   public writeValue(obj: any): void {
+    this._value = obj;
   }
 }
