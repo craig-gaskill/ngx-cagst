@@ -1,0 +1,29 @@
+<div *ngIf="!editing" class="mat-form-field">
+  <label class="mat-form-field-label">
+    <mat-label *ngIf="label">{{label}}</mat-label>
+  </label>
+  <div [id]="id">{{displayField ? value[displayField] : value}}</div>
+</div>
+
+<ng-container *ngIf="editing">
+  <mat-form-field>
+    <mat-label *ngIf="label">{{label}}</mat-label>
+    <mat-select [(value)]="value"
+                [multiple]="multiple"
+                [required]="required"
+                [disabled]="disabled">
+      <mat-option *ngIf="!required && showNoneOption && noneValue">{{noneValue}}</mat-option>
+      <mat-option *ngFor="let option of options"
+                  [disabled]="disableField ? !option[disableField] : false"
+                  [value]="valueField ? option[valueField] : option">
+        {{displayField ? option[displayField] : option}}
+      </mat-option>
+    </mat-select>
+
+    <mat-error *ngIf="invalid && touched">
+      <div *ngIf="hasError('required')">
+        {{requiredErrorMessage}}
+      </div>
+    </mat-error>
+  </mat-form-field>
+</ng-container>

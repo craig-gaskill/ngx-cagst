@@ -8,6 +8,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {CgtConfigurationModule} from '@cagst/ngx-configuration';
 import {CgtConfirmationModule, CgtInputModule, CgtLabelModule} from '@cagst/ngx-components';
 import {CgtDictionaryModule} from '@cagst/ngx-dictionary';
+import {CgtSelectModule} from '@cagst/ngx-components';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -21,6 +22,7 @@ import {DemoLabelComponent} from './ngx-components/label/demo-label.component';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {MockBackendService} from './api/mock-backend.service';
 import {DictionaryServiceConfig} from './config/dictionary-service.config';
+import {DemoSelectComponent} from './ngx-components/select/demo-select.component';
 
 @NgModule({
   imports: [
@@ -39,7 +41,8 @@ import {DictionaryServiceConfig} from './config/dictionary-service.config';
     CgtConfirmationModule,
     CgtDictionaryModule,
     CgtInputModule,
-    CgtLabelModule
+    CgtLabelModule,
+    CgtSelectModule
   ],
   declarations: [
     AppComponent,
@@ -48,7 +51,8 @@ import {DictionaryServiceConfig} from './config/dictionary-service.config';
     DemoConfirmationComponent,
     DemoDictionarySelectComponent,
     DemoInputComponent,
-    DemoLabelComponent
+    DemoLabelComponent,
+    DemoSelectComponent
   ],
   providers: [
     {

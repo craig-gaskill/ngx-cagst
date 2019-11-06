@@ -1,9 +1,3 @@
-/*
- * Copyright 2017-2018 Netsmart Technologies, Inc. All rights reserved
- * NETSMART PROPRIETARY/CONFIDENTIAL.
- *
- */
-
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
@@ -45,5 +39,4 @@ import {
     MatToolbarModule
   ]
 })
-export class AppMaterialModule {
-}
+export class AppMaterialModule { }

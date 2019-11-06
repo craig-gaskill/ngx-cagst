@@ -5,6 +5,7 @@ import {DemoConfirmationComponent} from './ngx-components/confirmation/demo-conf
 import {DemoInputComponent} from './ngx-components/input/demo-input.component';
 import {DemoLabelComponent} from './ngx-components/label/demo-label.component';
 import {DemoDictionarySelectComponent} from './ngx-dictionary/select/demo-dictionary-select.component';
+import {DemoSelectComponent} from './ngx-components/select/demo-select.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'components/label',
     component: DemoLabelComponent
+  },
+  {
+    path: 'components/select',
+    component: DemoSelectComponent
   },
   {
     path: 'dictionary/select',
