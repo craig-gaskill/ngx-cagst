@@ -12,8 +12,13 @@
                 [multiple]="multiple"
                 [required]="required"
                 [disabled]="disabled">
+      <ngx-mat-select-search *ngIf="searchable"
+                             [formControl]="searchControl"
+                             [placeholderLabel]="placeholder">
+      </ngx-mat-select-search>
+
       <mat-option *ngIf="!required && showNoneOption && noneValue">{{noneValue}}</mat-option>
-      <mat-option *ngFor="let option of options"
+      <mat-option *ngFor="let option of searchOptions$ | async"
                   [disabled]="disableField ? !option[disableField] : false"
                   [value]="valueField ? option[valueField] : option">
         {{displayField ? option[displayField] : option}}

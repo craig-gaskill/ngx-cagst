@@ -1,5 +1,7 @@
-import {Component, Input} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
+import {ReplaySubject} from 'rxjs';
+import {takeWhile} from 'rxjs/operators';
 
 @Component({
   selector: 'cgt-select',
@@ -13,9 +15,11 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms
     }
   ]
 })
-export class CgtSelectComponent implements ControlValueAccessor {
+export class CgtSelectComponent implements ControlValueAccessor, OnInit, OnDestroy {
   private _control: NgControl;
   private _disabled = false;
+  private _subscribed = true;
+  private _values: any[] = [];
   private _value: any;
 
   @Input() public id: string;
@@ -30,7 +34,7 @@ export class CgtSelectComponent implements ControlValueAccessor {
   @Input() public displayField: string;
   @Input() public valueField: string;
   @Input() public disableField: string;
-  @Input() public options: any[];
+  @Input() public searchable = true;
 
   @Input() public required = false;
   @Input() public requiredErrorMessage = 'This field is required.';
@@ -41,6 +45,32 @@ export class CgtSelectComponent implements ControlValueAccessor {
 
   public set disabled(isDisabled: boolean) {
     this._disabled = isDisabled;
+  }
+
+  @Input()
+  public get options(): any[] {
+    return this._values;
+  }
+
+  public set options(values: any[]) {
+    this._values = values;
+  }
+
+  public searchControl = new FormControl();
+  public searchOptions$ = new ReplaySubject<any[]>(1);
+
+  constructor() { }
+
+  public ngOnInit(): void {
+    this.searchOptions$.next(this._values ? this._values.slice() : []);
+
+    this.searchControl.valueChanges
+      .pipe(takeWhile(() => this._subscribed))
+      .subscribe(searchText => this.searchOptions(searchText));
+  }
+
+  public ngOnDestroy(): void {
+    this._subscribed = false;
   }
 
   public onChange = (_: any) => {};
@@ -85,5 +115,16 @@ export class CgtSelectComponent implements ControlValueAccessor {
 
   public writeValue(obj: any): void {
     this._value = obj;
+  }
+
+  private searchOptions(searchText: string): void {
+    const values = this._values ? this._values.slice() : [];
+
+    if (!searchText) {
+      this.searchOptions$.next(values);
+    } else {
+      searchText = searchText.toLocaleLowerCase();
+      this.searchOptions$.next(values.filter(val => val[this.displayField].toLocaleLowerCase().indexOf(searchText) > -1));
+    }
   }
 }

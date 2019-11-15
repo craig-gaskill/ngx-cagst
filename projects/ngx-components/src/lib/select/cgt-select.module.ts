@@ -3,6 +3,8 @@ import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material';
 
+import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
+
 import {CgtSelectComponent} from './cgt-select.component';
 
 @NgModule({
@@ -10,7 +12,8 @@ import {CgtSelectComponent} from './cgt-select.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxMatSelectSearchModule
   ],
   declarations: [
     CgtSelectComponent
