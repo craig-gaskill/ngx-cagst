@@ -1,6 +1,6 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
-import {ReplaySubject} from 'rxjs';
+import {Observable, ReplaySubject} from 'rxjs';
 import {takeWhile} from 'rxjs/operators';
 
 @Component({
@@ -20,6 +20,7 @@ export class CgtSelectComponent implements ControlValueAccessor, OnInit, OnDestr
   private _disabled = false;
   private _subscribed = true;
   private _values: any[] = [];
+  private _values$: Observable<any[]>;
   private _value: any;
 
   @Input() public id: string;
@@ -35,6 +36,8 @@ export class CgtSelectComponent implements ControlValueAccessor, OnInit, OnDestr
   @Input() public valueField: string;
   @Input() public disableField: string;
   @Input() public searchable = true;
+  @Input() public searching = false;
+  @Input() public noneFound = 'None found';
 
   @Input() public required = false;
   @Input() public requiredErrorMessage = 'This field is required.';
@@ -56,17 +59,28 @@ export class CgtSelectComponent implements ControlValueAccessor, OnInit, OnDestr
     this._values = values;
   }
 
+  @Input()
+  public set optionsLookup(values$: Observable<any[]>) {
+    this._values$ = values$;
+  }
+
   public searchControl = new FormControl();
   public searchOptions$ = new ReplaySubject<any[]>(1);
 
   constructor() { }
 
   public ngOnInit(): void {
-    this.searchOptions$.next(this._values ? this._values.slice() : []);
+    this.filterOptions();
 
     this.searchControl.valueChanges
       .pipe(takeWhile(() => this._subscribed))
-      .subscribe(searchText => this.searchOptions(searchText));
+      .subscribe(searchText => {
+        if (this._values$) {
+          this.searchOptions(searchText);
+        } else {
+          this.filterOptions(searchText);
+        }
+      });
   }
 
   public ngOnDestroy(): void {
@@ -117,7 +131,7 @@ export class CgtSelectComponent implements ControlValueAccessor, OnInit, OnDestr
     this._value = obj;
   }
 
-  private searchOptions(searchText: string): void {
+  private filterOptions(searchText?: string): void {
     const values = this._values ? this._values.slice() : [];
 
     if (!searchText) {
@@ -126,5 +140,8 @@ export class CgtSelectComponent implements ControlValueAccessor, OnInit, OnDestr
       searchText = searchText.toLocaleLowerCase();
       this.searchOptions$.next(values.filter(val => val[this.displayField].toLocaleLowerCase().indexOf(searchText) > -1));
     }
+  }
+
+  private searchOptions(searchText?: string): void {
   }
 }
