@@ -1,6 +1,6 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
-import {Observable, ReplaySubject} from 'rxjs';
+import {ReplaySubject} from 'rxjs';
 import {takeWhile} from 'rxjs/operators';
 
 @Component({
@@ -20,8 +20,8 @@ export class CgtSelectComponent implements ControlValueAccessor, OnInit, OnDestr
   private _disabled = false;
   private _subscribed = true;
   private _values: any[] = [];
-  private _values$: Observable<any[]>;
   private _value: any;
+  private _valueFn: any;
 
   @Input() public id: string;
   @Input() public name: string;
@@ -60,8 +60,8 @@ export class CgtSelectComponent implements ControlValueAccessor, OnInit, OnDestr
   }
 
   @Input()
-  public set optionsLookup(values$: Observable<any[]>) {
-    this._values$ = values$;
+  public set optionsLookup(fn: any) {
+    this._valueFn = fn;
   }
 
   public searchControl = new FormControl();
@@ -75,7 +75,7 @@ export class CgtSelectComponent implements ControlValueAccessor, OnInit, OnDestr
     this.searchControl.valueChanges
       .pipe(takeWhile(() => this._subscribed))
       .subscribe(searchText => {
-        if (this._values$) {
+        if (this._valueFn) {
           this.searchOptions(searchText);
         } else {
           this.filterOptions(searchText);
@@ -143,5 +143,8 @@ export class CgtSelectComponent implements ControlValueAccessor, OnInit, OnDestr
   }
 
   private searchOptions(searchText?: string): void {
+    this._valueFn.call(searchText)
+      .pipe(takeWhile(() => this._subscribed))
+      .subscribe(results => this.searchOptions$.next(results));
   }
 }

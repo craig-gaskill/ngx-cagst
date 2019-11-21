@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {CgtDictionaryValue} from '@cagst/ngx-dictionary';
+import {Observable, of} from 'rxjs';
 
 @Component({
   selector: 'demo-select',
@@ -79,4 +80,16 @@ export class DemoSelectComponent {
   }
 
   public value: any;
+
+  public lookupFunction(query?: string): Observable<CgtDictionaryValue[]> {
+    let filteredOptions;
+
+    if (query) {
+      filteredOptions = this.states.filter(val => val.display.toLocaleLowerCase().indexOf(query.toLocaleLowerCase()) > -1);
+    } else {
+      filteredOptions = this.states.slice(0, 20);
+    }
+
+    return of(filteredOptions);
+  }
 }
